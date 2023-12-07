@@ -1,125 +1,37 @@
-# deep-learning-challenge
-Background
-The nonprofit foundation Alphabet Soup wants a tool that can help it select the applicants for funding with the best chance of success in their ventures. With your knowledge of machine learning and neural networks, you’ll use the features in the provided dataset to create a binary classifier that can predict whether applicants will be successful if funded by Alphabet Soup.
+Report on the Performance of Alphabet Soup's Funding Prediction Model
+Overview of the Analysis
+The purpose of this analysis is to develop a deep learning binary classifier for Alphabet Soup, aiming to assist in the selection of funding applicants with the best chance of success. The dataset, comprising information on over 34,000 funded organizations, is provided by Alphabet Soup’s business team. The analysis involves utilizing machine learning and neural networks to create a model that predicts the success of applicants based on various features.
 
-From Alphabet Soup’s business team, you have received a CSV containing more than 34,000 organizations that have received funding from Alphabet Soup over the years. Within this dataset are a number of columns that capture metadata about each organization, such as:
-
-EIN and NAME—Identification columns
-APPLICATION_TYPE—Alphabet Soup application type
-AFFILIATION—Affiliated sector of industry
-CLASSIFICATION—Government organization classification
-USE_CASE—Use case for funding
-ORGANIZATION—Organization type
-STATUS—Active status
-INCOME_AMT—Income classification
-SPECIAL_CONSIDERATIONS—Special considerations for application
-ASK_AMT—Funding amount requested
-IS_SUCCESSFUL—Was the money used effectively
-Before You Begin
-IMPORTANT
-The instructions below are now updated to use Google Colab for this assignment instead of Jupyter Notebook. If you have already started this assignment using a Jupyter Notebook then you can continue to use Jupyter instead of Google Colab.
-
-Create a new repository for this project called deep-learning-challenge. Do not add this Challenge to an existing repository.
-
-Clone the new repository to your computer.
-
-Inside your local git repository, create a directory for the Deep Learning Challenge.
-
-Push the above changes to GitHub.
-
-Files
-Download the following files to help you get started:
-
-Module 21 Challenge filesLinks to an external site.
-
-Instructions
-Step 1: Preprocess the Data
-Using your knowledge of Pandas and scikit-learn’s StandardScaler(), you’ll need to preprocess the dataset. This step prepares you for Step 2, where you'll compile, train, and evaluate the neural network model.
-
-Start by uploading the starter file to Google Colab, then using the information we provided in the Challenge files, follow the instructions to complete the preprocessing steps.
-
-Read in the charity_data.csv to a Pandas DataFrame, and be sure to identify the following in your dataset:
-What variable(s) are the target(s) for your model?
-What variable(s) are the feature(s) for your model?
-Drop the EIN and NAME columns.
-
-Determine the number of unique values for each column.
-
-For columns that have more than 10 unique values, determine the number of data points for each unique value.
-
-Use the number of data points for each unique value to pick a cutoff point to bin "rare" categorical variables together in a new value, Other, and then check if the binning was successful.
-
-Use pd.get_dummies() to encode categorical variables.
-
-Split the preprocessed data into a features array, X, and a target array, y. Use these arrays and the train_test_split function to split the data into training and testing datasets.
-
-Scale the training and testing features datasets by creating a StandardScaler instance, fitting it to the training data, then using the transform function.
-
-Step 2: Compile, Train, and Evaluate the Model
-Using your knowledge of TensorFlow, you’ll design a neural network, or deep learning model, to create a binary classification model that can predict if an Alphabet Soup-funded organization will be successful based on the features in the dataset. You’ll need to think about how many inputs there are before determining the number of neurons and layers in your model. Once you’ve completed that step, you’ll compile, train, and evaluate your binary classification model to calculate the model’s loss and accuracy.
-
-Continue using the file in Google Colab in which you performed the preprocessing steps from Step 1.
-
-Create a neural network model by assigning the number of input features and nodes for each layer using TensorFlow and Keras.
-
-Create the first hidden layer and choose an appropriate activation function.
-
-If necessary, add a second hidden layer with an appropriate activation function.
-
-Create an output layer with an appropriate activation function.
-
-Check the structure of the model.
-
-Compile and train the model.
-
-Create a callback that saves the model's weights every five epochs.
-
-Evaluate the model using the test data to determine the loss and accuracy.
-
-Save and export your results to an HDF5 file. Name the file AlphabetSoupCharity.h5.
-
-Step 3: Optimize the Model
-Using your knowledge of TensorFlow, optimize your model to achieve a target predictive accuracy higher than 75%.
-
-Use any or all of the following methods to optimize your model:
-
-Adjust the input data to ensure that no variables or outliers are causing confusion in the model, such as:
-Dropping more or fewer columns.
-Creating more bins for rare occurrences in columns.
-Increasing or decreasing the number of values for each bin.
-Add more neurons to a hidden layer.
-Add more hidden layers.
-Use different activation functions for the hidden layers.
-Add or reduce the number of epochs to the training regimen.
-Note: If you make at least three attempts at optimizing your model, you will not lose points if your model does not achieve target performance.
-
-Create a new Google Colab file and name it AlphabetSoupCharity_Optimization.ipynb.
-
-Import your dependencies and read in the charity_data.csv to a Pandas DataFrame.
-
-Preprocess the dataset as you did in Step 1. Be sure to adjust for any modifications that came out of optimizing the model.
-
-Design a neural network model, and be sure to adjust for modifications that will optimize the model to achieve higher than 75% accuracy.
-
-Save and export your results to an HDF5 file. Name the file AlphabetSoupCharity_Optimization.h5.
-
-Step 4: Write a Report on the Neural Network Model
-For this part of the assignment, you’ll write a report on the performance of the deep learning model you created for Alphabet Soup.
-
-The report should contain the following:
-
-Overview of the analysis: Explain the purpose of this analysis.
-
-Results: Using bulleted lists and images to support your answers, address the following questions:
-
+Results
 Data Preprocessing
+Target Variable(s):
 
-What variable(s) are the target(s) for your model?
-What variable(s) are the features for your model?
-What variable(s) should be removed from the input data because they are neither targets nor features?
+IS_SUCCESSFUL is the target variable indicating the success of organizations funded by Alphabet Soup.
+Features:
+
+The selected features for the model include:
+Identification columns: EIN and NAME.
+Categorical features: APPLICATION_TYPE, AFFILIATION, CLASSIFICATION, USE_CASE, ORGANIZATION, STATUS, INCOME_AMT, SPECIAL_CONSIDERATIONS.
+Numeric feature: ASK_AMT.
+Variables to Remove:
+
+APPLICATION_TYPE and AFFILIATION are removed as they are neither targets nor informative features.
 Compiling, Training, and Evaluating the Model
+Neurons, Layers, Activation Functions:
 
-How many neurons, layers, and activation functions did you select for your neural network model, and why?
-Were you able to achieve the target model performance?
-What steps did you take in your attempts to increase model performance?
-Summary: Summarize the overall results of the deep learning model. Include a recommendation for how a different model could solve this classification problem, and then explain your recommendation.
+The initial architecture included three layers with different neuron configurations. However, various experiments were conducted with different layer configurations, and the best accuracy was achieved with 30 neurons in the first layer, 20 in the second, and 1 in the third.
+Target Model Performance:
+
+The target accuracy was not fully achieved, reaching a maximum of 73% with different layer configurations.
+Steps to Increase Model Performance:
+
+Experimentation with different layer configurations, including changes in the number of neurons in each layer.
+Potential hyperparameter tuning, such as adjusting learning rates, batch sizes, or adding regularization techniques.
+Further exploration of feature engineering or the addition of new relevant features.
+Summary
+The deep learning model, with its various layer configurations, achieved a maximum accuracy of 73%, but this falls short of the target. The model's performance suggests a need for additional refinement and optimization.
+
+Recommendation for a Different Model:
+Considering the observed challenges in achieving the desired accuracy, an ensemble model such as Random Forest or Gradient Boosting may be explored. Ensemble models are robust, less prone to overfitting, and can handle non-linear relationships effectively. They also provide insights into feature importance, which can aid in understanding the factors influencing funding success.
+
+In conclusion, while the deep learning model shows promise, exploring alternative models and conducting further optimization may lead to improved predictive performance. Regular monitoring and updates to the model, coupled with additional feature engineering, can contribute to enhanced accuracy over time.
